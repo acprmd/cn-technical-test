@@ -1,14 +1,13 @@
 package technical_test.monitoring_backend.controller;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDateTime;
+
 import technical_test.monitoring_backend.entity.CallMonitoring;
 import technical_test.monitoring_backend.service.CallMonitoringService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/monitoring")
@@ -22,7 +21,15 @@ public class CallMonitoringController {
     }
 
     @GetMapping
-    public Page<CallMonitoring> getAll(@RequestParam(defaultValue = "0") int page) {
-        return service.getAll(page);
+    public Page<CallMonitoring> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
+            @RequestParam(required = false) String sentimentFilter,
+            @RequestParam(defaultValue = "callTimestamp") String sortBy,
+            @RequestParam(defaultValue = "desc") String sortDir
+            ) {
+        return service.getAll(page, search, startDate, endDate, sentimentFilter, sortBy, sortDir);
     }
 }
