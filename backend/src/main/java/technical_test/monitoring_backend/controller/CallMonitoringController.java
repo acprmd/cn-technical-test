@@ -2,6 +2,9 @@ package technical_test.monitoring_backend.controller;
 
 import technical_test.monitoring_backend.entity.CallMonitoring;
 import technical_test.monitoring_backend.service.CallMonitoringService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +22,7 @@ public class CallMonitoringController {
     }
 
     @GetMapping
-    public List<CallMonitoring> getAll() {
-        return service.getAll();
+    public Page<CallMonitoring> getAll(@RequestParam(defaultValue = "0") int page) {
+        return service.getAll(page);
     }
 }
