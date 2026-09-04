@@ -1,8 +1,9 @@
 import type { FunctionComponent } from "react";
+import type { Content } from "../types/Types";
 
 interface MonitoringTableProps {
-    data?: any[]
-    sortBy: string
+    data?: Content[]
+    sortBy?: string
     sortDir?: 'asc' | 'desc'
 }
 
@@ -25,7 +26,7 @@ const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], s
                             <span className="flex items-center gap-1">
                                 {column.label}
                                 {sortBy === column.key &&
-                                    (sortDir == 'asc' ? "↑" : "↓")}
+                                    (sortDir == 'asc' ? " ↑" : " ↓")}
                             </span>
                         </th>))}
                     </tr>

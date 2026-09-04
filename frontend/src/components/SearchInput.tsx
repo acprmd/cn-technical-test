@@ -1,14 +1,19 @@
-import type { FunctionComponent } from "react";
+import { useEffect, useState, type FunctionComponent } from "react";
 import { Input } from "antd"
+import useDebounce from "../hooks/useDebounce";
 
 interface SearchInputProps {
-    value: string
-    onChange: () => void
+    onChange: (value: string) => void
 }
 
-const SearchInput: FunctionComponent<SearchInputProps> = ({ value, onChange }) => {
+const SearchInput: FunctionComponent<SearchInputProps> = ({ onChange }) => {
+    const [query, setQuery] = useState('');
+    const [debouncedQuery] = useDebounce(query, 300)
+    useEffect(() => {
+        onChange(debouncedQuery)
+    }, [debouncedQuery]);
     return (
-        <Input type="text" placeholder="Search" value={value} onChange={onChange} />
+        <Input type="text" placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} />
     );
 }
 
