@@ -22,7 +22,7 @@ function App() {
         <PeriodFilter onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} />
         <SentimentFilter onChange={setSentimentFilter} />
       </div>
-      <div className='min-h-64 flex flex-col'>
+      <div className={`min-h-64 flex flex-col ${data.content?.length === 0 || loading ? 'justify-center' : ''}`}>
         {
           loading ? <StateLoading /> :
             error ? <StateError description={error} /> :
