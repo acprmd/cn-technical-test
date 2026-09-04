@@ -17,7 +17,7 @@ export const useMonitoringData = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetchMonitoring({ search, startDate, endDate, sentimentFilter, sortBy, sortDir })
+        fetchMonitoring({ search, startDate, endDate, sentimentFilter, page, sortBy, sortDir })
             .then(setData)
             .catch(setError)
             .finally(() => setLoading(false))

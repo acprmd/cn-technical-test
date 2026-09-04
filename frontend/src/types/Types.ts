@@ -2,7 +2,7 @@ export type SentimentFilter = 'below70' | '70orAbove' | undefined
 export type SortDir = 'asc' | 'desc' | undefined
 
 export interface Params {
-    page?: number
+    page: number
     search?: string
     startDate?: string
     endDate?: string

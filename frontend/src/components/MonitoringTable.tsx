@@ -5,6 +5,7 @@ interface MonitoringTableProps {
     data?: Content[]
     sortBy?: string
     sortDir?: 'asc' | 'desc'
+    page: number
 }
 
 const columns = [
@@ -15,7 +16,7 @@ const columns = [
     { key: 'sentimentScore', label: "Sentiment Score Nasabah" },
 ]
 
-const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], sortBy, sortDir = 'asc' }) => {
+const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], sortBy, sortDir = 'asc', page }) => {
     return (
         <div className="overflow-x-auto border border-gray-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
@@ -34,7 +35,7 @@ const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], s
                 <tbody>
                     {data.map((data, idx) =>
                         <tr key={data.callId}>
-                            <td className="px-3 py-2 text-center">{idx}</td>
+                            <td className="px-3 py-2 text-center">{(page * 5) + (idx + 1)}</td>
                             <td className="px-3 py-2">{data.callId}</td>
                             <td className="px-3 py-2">{data.callTimestamp}</td>
                             <td className="px-3 py-2">{data.csName}</td>
