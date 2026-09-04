@@ -6,6 +6,14 @@ export async function fetchMonitoring(params: Params): Promise<MonitoringRespons
     const filteredParams = Object.entries(params as unknown as Record<string, string>).filter(([_key, value]) => value !== null && value !== undefined && value !== '')
     const query = new URLSearchParams(filteredParams).toString()
     const res = await fetch(`${BASE_URL}?${query}`)
-    if (!res.ok) throw ('Failed to fetch data!')
+    if (!res.ok) {
+        let message = "Something went wrong loading the data"
+        try {
+            const body = await res.json()
+            if (body.error) message = body.error
+        } catch (error) {
+        }
+        throw new Error(message)
+    }
     return res.json()
 }

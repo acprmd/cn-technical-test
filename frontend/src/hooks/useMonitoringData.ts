@@ -13,13 +13,16 @@ export const useMonitoringData = () => {
     const [sortDir, setSortDir] = useState<Params["sortDir"]>("asc");
     const [data, setData] = useState<Partial<MonitoringResponse>>({});
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         setLoading(true)
+        setError(null)
         fetchMonitoring({ search, startDate, endDate, sentimentFilter, page, sortBy, sortDir })
             .then(setData)
-            .catch(setError)
+            .catch((err) => {
+                setError(err?.message)
+            })
             .finally(() => setLoading(false))
     }, [page, search, startDate, endDate, sentimentFilter, sortBy, sortDir])
 

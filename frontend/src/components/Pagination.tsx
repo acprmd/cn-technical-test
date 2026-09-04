@@ -21,7 +21,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({ page, totalPages, onCh
             <span className="font-bold">Page {page ? page + 1 : 1} of {totalPages}</span>
             <Button
                 className="min-w-24"
-                disabled={page + 1 === totalPages}
+                disabled={page + 1 === totalPages || !totalPages}
                 onClick={() => onChangePage(page + 1)}
             >
                 Next
