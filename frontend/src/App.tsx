@@ -8,7 +8,7 @@ import Pagination from './components/Pagination'
 function App() {
   const {
     data,
-    setSearch, setPage, setSentimentFilter, setStartDate, setEndDate,
+    setSearch, setPage, setSentimentFilter, setStartDate, setEndDate, toggleSort,
     sortBy, sortDir, page
   } = useMonitoringData()
   return (
@@ -19,7 +19,7 @@ function App() {
         <PeriodFilter onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} />
         <SentimentFilter onChange={setSentimentFilter} />
       </div>
-      <MonitoringTable data={data.content ?? []} sortBy={sortBy} sortDir={sortDir} page={page} />
+      <MonitoringTable data={data.content ?? []} sortBy={sortBy} sortDir={sortDir} onToggleSort={toggleSort} page={page} />
       <Pagination page={page} totalPages={data?.totalPages} onChangePage={setPage} />
     </div>
   )

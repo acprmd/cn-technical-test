@@ -5,6 +5,7 @@ interface MonitoringTableProps {
     data?: Content[]
     sortBy?: string
     sortDir?: 'asc' | 'desc'
+    onToggleSort: (column: string) => void
     page: number
 }
 
@@ -16,15 +17,15 @@ const columns = [
     { key: 'sentimentScore', label: "Sentiment Score Nasabah" },
 ]
 
-const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], sortBy, sortDir = 'asc', page }) => {
+const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], sortBy, sortDir = 'asc', onToggleSort, page }) => {
     return (
         <div className="overflow-x-auto border border-gray-200 rounded-lg">
             <table className="min-w-full text-sm text-left">
                 <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
                         <th className="px-3 py-2 font-medium text-gray-600">No.</th>
-                        {columns.map(column => (<th key={column.key} className="px-3 py-2 font-medium text-gray-600 cursor-pointer select-none hover:bg-gray-100">
-                            <span className="flex items-center gap-1">
+                        {columns.map(column => (<th key={column.key} onClick={() => onToggleSort(column.key)} className="px-3 py-2 font-bold text-gray-600 cursor-pointer select-none hover:bg-gray-100">
+                            <span className="flex items-center gap-1 font-bold">
                                 {column.label}
                                 {sortBy === column.key &&
                                     (sortDir == 'asc' ? " ↑" : " ↓")}

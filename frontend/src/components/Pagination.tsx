@@ -11,9 +11,21 @@ const Pagination: FunctionComponent<PaginationProps> = ({ page, totalPages, onCh
 
     return (
         <div className="flex justify-between">
-            <Button disabled={page === 0} onClick={() => onChangePage(page - 1)}>Previous</Button>
+            <Button
+                className="min-w-24"
+                disabled={page === 0}
+                onClick={() => onChangePage(page - 1)}
+            >
+                Previous
+            </Button>
             <span className="font-bold">Page {page ? page + 1 : 1} of {totalPages}</span>
-            <Button disabled={page + 1 === totalPages} onClick={() => onChangePage(page + 1)}>Next</Button>
+            <Button
+                className="min-w-24"
+                disabled={page + 1 === totalPages}
+                onClick={() => onChangePage(page + 1)}
+            >
+                Next
+            </Button>
         </div>
     );
 }
