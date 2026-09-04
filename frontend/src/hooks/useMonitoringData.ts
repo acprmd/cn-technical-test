@@ -10,7 +10,7 @@ export const useMonitoringData = () => {
     const [endDate, setEndDate] = useState<Params["endDate"]>(undefined);
     const [sentimentFilter, setSentimentFilter] = useState<Params["sentimentFilter"]>(undefined);
     const [sortBy, setSortBy] = useState<Params["sortBy"]>("");
-    const [sortDir, setSortDir] = useState<Params["sortDir"]>("desc");
+    const [sortDir, setSortDir] = useState<Params["sortDir"]>("asc");
     const [data, setData] = useState<Partial<MonitoringResponse>>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

@@ -37,7 +37,7 @@ const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], s
                         <tr key={data.callId}>
                             <td className="px-3 py-2 text-center">{(page * 5) + (idx + 1)}</td>
                             <td className="px-3 py-2">{data.callId}</td>
-                            <td className="px-3 py-2">{data.callTimestamp}</td>
+                            <td className="px-3 py-2">{new Date(data.callTimestamp).toLocaleString()}</td>
                             <td className="px-3 py-2">{data.csName}</td>
                             <td className="px-3 py-2">{data.customerName}</td>
                             <td className={`${+data.sentimentScore < 70 ? 'text-red-600' : 'text-green-600'}`}>{data.sentimentScore}%</td>

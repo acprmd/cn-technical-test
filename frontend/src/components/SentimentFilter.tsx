@@ -3,7 +3,6 @@ import { Select } from "antd"
 import type { SentimentFilterType } from "../types/Types";
 
 interface SentimentFilterProps {
-    value: SentimentFilterType
     onChange: (e: SentimentFilterType) => void
 }
 
@@ -12,9 +11,9 @@ const options = [
     { value: '70orAbove', label: '70% atau lebih' }
 ]
 
-const SentimentFilter: FunctionComponent<SentimentFilterProps> = ({ value, onChange }) => {
+const SentimentFilter: FunctionComponent<SentimentFilterProps> = ({ onChange }) => {
     return (
-        <Select options={options} allowClear value={value} onChange={(v) => { onChange(v) }} placeholder="Sentiment score" />
+        <Select options={options} allowClear onChange={(v) => { onChange(v) }} placeholder="Sentiment score" />
     );
 }
 
