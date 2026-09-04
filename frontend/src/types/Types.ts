@@ -1,14 +1,14 @@
-export type SentimentFilter = 'below70' | '70orAbove' | undefined
-export type SortDir = 'asc' | 'desc' | undefined
+export type SentimentFilterType = 'below70' | '70orAbove' | undefined
+type SortDirType = 'asc' | 'desc' | undefined
 
 export interface Params {
     page: number
     search?: string
     startDate?: string
     endDate?: string
-    sentimentFilter?: SentimentFilter
+    sentimentFilter?: SentimentFilterType
     sortBy?: string
-    sortDir?: SortDir
+    sortDir?: SortDirType
 }
 
 export interface Content {
