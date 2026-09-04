@@ -3,7 +3,7 @@ package technical_test.monitoring_backend.controller;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
-import technical_test.monitoring_backend.entity.CallMonitoring;
+import technical_test.monitoring_backend.dto.CallMonitoringResponse;
 import technical_test.monitoring_backend.service.CallMonitoringService;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CallMonitoringController {
     }
 
     @GetMapping
-    public Page<CallMonitoring> getAll(
+    public Page<CallMonitoringResponse> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(required = false) String search,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,

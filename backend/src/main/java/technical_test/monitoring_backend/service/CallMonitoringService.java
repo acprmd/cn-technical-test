@@ -1,5 +1,6 @@
 package technical_test.monitoring_backend.service;
 
+import technical_test.monitoring_backend.dto.CallMonitoringResponse;
 import technical_test.monitoring_backend.entity.CallMonitoring;
 import technical_test.monitoring_backend.repository.CallMonitoringRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class CallMonitoringService {
         this.repository = repository;
     }
 
-    public Page<CallMonitoring> getAll(
+    public Page<CallMonitoringResponse> getAll(
             int page,
             String search,
             LocalDateTime startDate,
@@ -39,7 +40,15 @@ public class CallMonitoringService {
         );
 
         Pageable pageable = PageRequest.of(page, 5, sort);
-        return repository.findAll(spec, pageable);
+
+        Page<CallMonitoring> entityPage = repository.findAll(spec, pageable);
+        return entityPage.map(entity -> new CallMonitoringResponse(
+                entity.getCallId(),
+                entity.getCallTimestamp(),
+                entity.getCsName(),
+                entity.getCustomerName(),
+                entity.getSentimentScore()
+        ));
     }
 
     private Specification<CallMonitoring> buildSpecification(
