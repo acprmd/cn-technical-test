@@ -28,7 +28,7 @@ const MonitoringTable: FunctionComponent<MonitoringTableProps> = ({ data = [], s
                             <th
                                 key={column.key}
                                 onClick={() => onToggleSort(column.key)}
-                                className="cursor-pointer select-none px-4 py-3 font-semibold text-slate-600 transition-colors hover:bg-slate-200">
+                                className={`cursor-pointer select-none px-4 py-3 font-semibold text-slate-600 transition-colors duration-300 hover:bg-slate-200 ${sortBy === column.key ? 'bg-slate-200' : ''}`}>
                                 <span className="flex items-center gap-1 font-bold">
                                     {column.label}
                                     {sortBy === column.key &&

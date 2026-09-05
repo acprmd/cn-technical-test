@@ -15,7 +15,7 @@ const PeriodFilter: FunctionComponent<PeriodFilterProps> = ({ onChangeStartDate,
     return (
         <RangePicker
             allowClear
-            minDate={dayjs().subtract(90, 'days')}
+            minDate={dayjs().subtract(3, 'month')}
             maxDate={dayjs()}
             onChange={(e) => {
                 onChangeStartDate(e?.[0]?.startOf('day').format(DATE_FORMAT))
